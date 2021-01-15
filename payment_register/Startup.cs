@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using payment_register.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace payment_register
 {
@@ -26,6 +30,20 @@ namespace payment_register
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddDbContextPool<PaymentDetailContext>(
+                dbContextOptions => dbContextOptions
+                    .UseMySql(
+                        // Replace with your connection string.
+                        Configuration.GetConnectionString("DevConnection"),
+                        // Replace with your server version and type.
+                        // For common usages, see pull request #1233.
+                        new MySqlServerVersion(new Version(10, 3, 22)), // use MariaDbServerVersion for MariaDB
+                        mySqlOptions => mySqlOptions
+                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                    // Everything from this point on is optional but helps with debugging.
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
