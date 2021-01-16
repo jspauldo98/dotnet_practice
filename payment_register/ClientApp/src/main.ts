@@ -19,4 +19,5 @@ if (environment.production) {
 platformBrowserDynamic(providers).bootstrapModule(AppModule)
   .catch(err => console.log(err));
 
-export { renderModule, renderModuleFactory } from '@angular/platform-server';
+// For some reson after updating angular this needs removed?
+// export { renderModule, renderModuleFactory } from '@angular/platform-server';
