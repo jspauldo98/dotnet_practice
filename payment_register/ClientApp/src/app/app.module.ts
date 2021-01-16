@@ -5,10 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { PaymentDetailListComponent } from './payment-details/payment-detail/payment-detail-list/payment-detail-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PaymentDetailComponent,
+    PaymentDetailsComponent,
+    PaymentDetailListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
