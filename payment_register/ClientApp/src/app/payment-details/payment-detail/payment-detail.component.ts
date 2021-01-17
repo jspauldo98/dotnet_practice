@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 import {PaymentDetail} from 'src/app/shared/payment-detail.model'
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment-detail',
@@ -11,9 +12,16 @@ import { NgForm } from '@angular/forms';
 })
 export class PaymentDetailComponent implements OnInit {
 
-  constructor(public service:PaymentDetail, private service2:PaymentDetailService) { }
+  constructor(public service:PaymentDetail, private service2:PaymentDetailService,
+    private toastr:ToastrService) { }
 
   ngOnInit() {
+    this.resetForm();
+  }
+
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.resetForm();
     this.service = {
       PMId          :0,
       CardOwnerName :'',
@@ -25,12 +33,13 @@ export class PaymentDetailComponent implements OnInit {
 
   onSubmit(form:NgForm) {    
     this.service2.postPaymentDetail(form.value).subscribe(
-      res => {},
+      res => {
+        this.resetForm(form);
+        this.toastr.success('Submitted successfully', 'Payment Detail Register');
+      },
       err => {
         console.log(err);
       }
-    )
-    if (form != null)
-      form.resetForm();
+    )    
   }
 }

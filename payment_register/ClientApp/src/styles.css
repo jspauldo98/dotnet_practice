@@ -22,11 +22,13 @@ input.ng-invalid.ng-touched {
 input.ng-valid {
   border-color: #28a745;
 }
-
 .green-icon {
   color: #28a745;
 }
-
 .red-icon {
   color: #dc3545;
+}
+
+#toast-container > div {
+  opacity: 1;
 }
