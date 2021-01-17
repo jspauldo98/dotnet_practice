@@ -30,7 +30,7 @@ namespace payment_register
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-        services.AddDbContextPool<PaymentDetailContext>(
+            services.AddDbContextPool<PaymentDetailContext>(
             dbContextOptions => dbContextOptions
                 .UseMySql(
                     // Replace with your connection string.
@@ -44,6 +44,10 @@ namespace payment_register
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors()
             );
+            services.AddCors(options => options.AddPolicy("PaymentDetail", builder =>
+            {
+                builder.WithOrigins("http://localhost:5001").AllowAnyMethod().AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +62,7 @@ namespace payment_register
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
+            }         
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -68,6 +72,9 @@ namespace payment_register
             }
 
             app.UseRouting();
+
+            app.UseCors(options => options.WithOrigins("http://localhost:5001")
+                .AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
@@ -87,7 +94,7 @@ namespace payment_register
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
-            });
+            });             
         }
     }
 }

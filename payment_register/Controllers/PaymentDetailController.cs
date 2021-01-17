@@ -4,11 +4,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using payment_register.Models;
+using Microsoft.AspNetCore.Cors;
+using System;
 
 namespace payment_register.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("PaymentDetail")]
     public class PaymentDetailController : ControllerBase
     {
         private readonly PaymentDetailContext _context;
@@ -21,6 +24,7 @@ namespace payment_register.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PaymentDetail>>> GetPaymentDetails()
         {
+            Console.WriteLine("GET");
             return await _context.PaymentDetails.ToListAsync();
         }
 
@@ -28,6 +32,7 @@ namespace payment_register.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PaymentDetail>> GetPaymentDetail(int id)
         {
+            Console.WriteLine("GET2");
             var paymentDetail = await _context.PaymentDetails.FindAsync(id);
 
             if (paymentDetail == null)
@@ -42,6 +47,7 @@ namespace payment_register.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPaymentDetail(int id, PaymentDetail paymentDetail)
         {
+            Console.WriteLine("PUT");
             if (id != paymentDetail.PMid)
             {
                 return BadRequest();
@@ -72,6 +78,7 @@ namespace payment_register.Controllers
         [HttpPost]
         public async Task<ActionResult<PaymentDetail>> PostPaymentDetail(PaymentDetail paymentDetail)
         {
+            Console.WriteLine("POST");
             _context.PaymentDetails.Add(paymentDetail);
             await _context.SaveChangesAsync();
 
@@ -82,6 +89,7 @@ namespace payment_register.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<PaymentDetail>> DeletePaymentDetail(int id)
         {
+            Console.WriteLine("DELETE");
             var paymentDetail = await _context.PaymentDetails.FindAsync(id);
             if (paymentDetail == null)
             {
