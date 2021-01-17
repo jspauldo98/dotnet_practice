@@ -5,9 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
+import { PaymentDetailComponent } from './payment-details/payment-detail/payment-detail.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 import { PaymentDetailListComponent } from './payment-details/payment-detail/payment-detail-list/payment-detail-list.component';
+import { PaymentDetailService } from './shared/payment-detail.service';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,9 @@ import { PaymentDetailListComponent } from './payment-details/payment-detail/pay
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [PaymentDetailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
