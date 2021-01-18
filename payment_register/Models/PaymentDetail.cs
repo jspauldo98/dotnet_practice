@@ -6,7 +6,7 @@ namespace payment_register.Models
     public class PaymentDetail
     {
         [Key]
-        public int PMid {get; set;}
+        public int PMId {get; set;}
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string CardOwnerName {get; set;}

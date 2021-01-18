@@ -25,6 +25,7 @@ namespace payment_register.Controllers
         public async Task<ActionResult<IEnumerable<PaymentDetail>>> GetPaymentDetails()
         {
             Console.WriteLine("GET");
+        
             return await _context.PaymentDetails.ToListAsync();
         }
 
@@ -48,7 +49,7 @@ namespace payment_register.Controllers
         public async Task<IActionResult> PutPaymentDetail(int id, PaymentDetail paymentDetail)
         {
             Console.WriteLine("PUT");
-            if (id != paymentDetail.PMid)
+            if (id != paymentDetail.PMId)
             {
                 return BadRequest();
             }
@@ -82,7 +83,7 @@ namespace payment_register.Controllers
             _context.PaymentDetails.Add(paymentDetail);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPaymentDetail", new { id = paymentDetail.PMid }, paymentDetail);
+            return CreatedAtAction("GetPaymentDetail", new { id = paymentDetail.PMId }, paymentDetail);
         }
 
         // DELETE: api/PaymentDetail/id
@@ -105,7 +106,7 @@ namespace payment_register.Controllers
 
         private bool PaymentDetailExists(int id)
         {
-            return _context.PaymentDetails.Any(e => e.PMid == id);
+            return _context.PaymentDetails.Any(e => e.PMId == id);
         }
     }
 }

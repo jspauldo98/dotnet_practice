@@ -7,7 +7,7 @@
    <input 
       type="hidden" 
       name="PMId" 
-      [value]="service.PMId">
+      [value]="service.formData.PMId">
 
    <!-- User Card Name Entry -->
    <div 
@@ -29,7 +29,7 @@
             type="text" 
             name="CardOwnerName" 
             #CardOwnerName="ngModel" 
-            [(ngModel)]="service.CardOwnerName" 
+            [(ngModel)]="service.formData.CardOwnerName" 
             class="form-control" 
             placeholder="Card Owner Name" 
             required>
@@ -57,7 +57,7 @@
             type="text" 
             name="CardNumber" 
             #CardNumber="ngModel" 
-            [(ngModel)]="service.CardNumber" 
+            [(ngModel)]="service.formData.CardNumber" 
             class="form-control" 
             placeholder="16 Digit Card Number" 
             maxlength="16" 
@@ -88,7 +88,7 @@
                type="text" 
                name="ExpirationDate" 
                #ExpirationDate="ngModel" 
-               [(ngModel)]="service.ExpirationDate" 
+               [(ngModel)]="service.formData.ExpirationDate" 
                class="form-control" 
                placeholder="MM/YY" 
                maxlength="5" 
@@ -117,7 +117,7 @@
                type="password" 
                name="CVV" 
                #CVV="ngModel" 
-               [(ngModel)]="service.CVV" 
+               [(ngModel)]="service.formData.CVV" 
                class="form-control" 
                placeholder="CVV" 
                maxlength="3" 

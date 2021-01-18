@@ -8,7 +8,7 @@ using payment_register.Models;
 namespace payment_register.Migrations
 {
     [DbContext(typeof(PaymentDetailContext))]
-    [Migration("20210115223708_InitialCreate")]
+    [Migration("20210118011500_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace payment_register.Migrations
 
             modelBuilder.Entity("payment_register.Models.PaymentDetail", b =>
                 {
-                    b.Property<int>("PMid")
+                    b.Property<int>("PMId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -40,7 +40,7 @@ namespace payment_register.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(5)");
 
-                    b.HasKey("PMid");
+                    b.HasKey("PMId");
 
                     b.ToTable("PaymentDetails");
                 });

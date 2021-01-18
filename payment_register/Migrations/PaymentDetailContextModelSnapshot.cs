@@ -18,7 +18,7 @@ namespace payment_register.Migrations
 
             modelBuilder.Entity("payment_register.Models.PaymentDetail", b =>
                 {
-                    b.Property<int>("PMid")
+                    b.Property<int>("PMId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -38,7 +38,7 @@ namespace payment_register.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(5)");
 
-                    b.HasKey("PMid");
+                    b.HasKey("PMId");
 
                     b.ToTable("PaymentDetails");
                 });

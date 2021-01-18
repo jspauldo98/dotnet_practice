@@ -11,7 +11,7 @@ namespace payment_register.Migrations
                 name: "PaymentDetails",
                 columns: table => new
                 {
-                    PMid = table.Column<int>(type: "int", nullable: false)
+                    PMId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CardOwnerName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     CardNumber = table.Column<string>(type: "varchar(16)", nullable: false),
@@ -20,7 +20,7 @@ namespace payment_register.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PaymentDetails", x => x.PMid);
+                    table.PrimaryKey("PK_PaymentDetails", x => x.PMId);
                 });
         }
 

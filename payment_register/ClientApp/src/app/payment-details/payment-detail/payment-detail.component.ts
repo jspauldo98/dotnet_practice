@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentDetailComponent implements OnInit {
 
-  constructor(public service:PaymentDetail, private service2:PaymentDetailService,
+  constructor(public service:PaymentDetailService,
     private toastr:ToastrService) { }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class PaymentDetailComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form != null)
       form.resetForm();
-    this.service = {
+    this.service.formData = {
       PMId          :0,
       CardOwnerName :'',
       CardNumber    :'',
@@ -31,15 +31,36 @@ export class PaymentDetailComponent implements OnInit {
     }
   }
 
-  onSubmit(form:NgForm) {    
-    this.service2.postPaymentDetail(form.value).subscribe(
+  onSubmit(form:NgForm) {   
+    if (this.service.formData.PMId==0)
+      this.insertRecord(form);
+    else
+      this.updateRecord(form);
+  }
+
+  insertRecord(form:NgForm){
+    this.service.postPaymentDetail().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Submitted successfully', 'Payment Detail Register');
+        this.service.refreshList();
       },
       err => {
         console.log(err);
       }
-    )    
+    )
+  }
+
+  updateRecord(form:NgForm){
+    this.service.putPaymentDetail().subscribe(
+      res => {
+        this.resetForm(form);
+        this.toastr.info('Submitted successfully', 'Payment Detail Register');
+        this.service.refreshList();
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 }
