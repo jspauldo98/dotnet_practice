@@ -1,6 +1,6 @@
 # Donet Practice Projects
 
-## Payment Detail Register
+## payment_register
 
 Simple one page web application that allows the user to register, modify, and delete payment information.
 
