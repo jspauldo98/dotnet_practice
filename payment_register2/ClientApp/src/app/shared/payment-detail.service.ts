@@ -29,6 +29,6 @@ export class PaymentDetailService {
   }
 
   refreshList() {
-    // this.http.get(this.apiPath).toPromise().then(res => this.list = res as PaymentDetail[]);
+    this.http.get(this.apiPath).toPromise().then(res => this.list = res as PaymentDetail[]);
   }
 }
