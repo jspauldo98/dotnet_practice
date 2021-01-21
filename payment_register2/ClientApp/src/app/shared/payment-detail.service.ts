@@ -17,15 +17,15 @@ export class PaymentDetailService {
   // Communication with ASP.NET Controller
 
   postPaymentDetail() {    
-    // return this.http.post(this.apiPath, this.formData);
+    return this.http.post(this.apiPath, this.formData);
   }
 
   putPaymentDetail() {    
-    // return this.http.put(this.apiPath + '/' + this.formData.PMId, this.formData);
+    return this.http.put(this.apiPath + '/' + this.formData.PMId, this.formData);
   }
 
   deletePaymentDetail(id) {    
-    // return this.http.delete(this.apiPath + '/' + id);
+    return this.http.delete(this.apiPath + '/' + id);
   }
 
   refreshList() {

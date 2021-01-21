@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { PaymentDetail } from 'src/app/shared/payment-detail.model';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 
@@ -11,28 +11,28 @@ import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 export class PaymentDetailListComponent implements OnInit {
 
   constructor(public service: PaymentDetailService, 
-    // private toastr:ToastrService
+    private toastr:ToastrService
     ) { }
 
   ngOnInit() {    
-    // this.service.refreshList();
+    this.service.refreshList();
   }
 
-  // populateForm(pd:PaymentDetail) {
-  //   this.service.formData = Object.assign({}, pd);
-  //   console.log(this.service.formData);
-  // }
+  populateForm(pd:PaymentDetail) {
+    this.service.formData = Object.assign({}, pd);
+    console.log(this.service.formData);
+  }
 
-  // onDelete(PMId) {
-  //   if (confirm('Are you sure you want to delete this record?')) {
-  //     this.service.deletePaymentDetail(PMId)
-  //     .subscribe(res => {
-  //       this.service.refreshList();
-  //       this.toastr.warning('Deleted successfully', 'Payment Detail Register');
-  //     },
-  //       err => {
-  //         console.log(err);
-  //       });
-  //   }    
-  // }
+  onDelete(PMId) {
+    if (confirm('Are you sure you want to delete this record?')) {
+      this.service.deletePaymentDetail(PMId)
+      .subscribe(res => {
+        this.service.refreshList();
+        this.toastr.warning('Deleted successfully', 'Payment Detail Register');
+      },
+        err => {
+          console.log(err);
+        });
+    }    
+  }
 }
